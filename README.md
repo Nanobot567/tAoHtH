@@ -1,4 +1,4 @@
-# ahh
+# tAoHtH
 The adventures of horse the horse, a game that's bad on purpose
 
 ### What is this game?
