@@ -1,7 +1,8 @@
 import "CoreLibs/graphics"
 import "sky"
 import "horse"
-import "statusBar"
+import "status"
+import "menu"
 
 local gfx = playdate.graphics
 
@@ -12,5 +13,6 @@ function playdate.update()
     sunUpdate()
     cloudUpdate()
     statusUpdate()
+    menuUpdate()
     playdate.drawFPS(380,0)
 end
