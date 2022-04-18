@@ -11,10 +11,10 @@ horse_idle:load("img/horse_idle")
 hunger = 0
 anger = 0
 thirst = 0
-happiness = "0"
-horseStatus = 0
+happiness = 0
+horseStatus = "i"
 tick = 0
--- statuses: 0-idle 1-sleeping
+-- statuses: i-idle s-sleeping
 
 function changeHorse(stat, amount, operator)
     if stat == "hunger" then
@@ -34,18 +34,42 @@ function changeHorse(stat, amount, operator)
             thirst = amount
         end
     end
-    print("changed")
-    print(hunger)
 end
 
 function horseUpdate()
     tick += 1
-    if tick == 100 then
+    if tick == 50 then
+        if thirst == 15 then
+        else
+            thirst += 1
+        end
+    elseif tick == 100 then
         hunger += 1
         tick = 0
     end
-    if horseStatus == 0 then
+
+    if hunger == 0 or thirst == 0 then
+        happiness = 2
+    elseif hunger == 5 or thirst == 5 then
+        happiness = 1
+    elseif hunger == 7 or thirst == 7 then
+        happiness = 0
+    elseif hunger == 10 or thirst == 10 then
+        happiness = -1
+    elseif hunger == 14 or thirst == 14 then
+        happiness = -2
+    end
+    
+    if hunger == 15 then
+        horseStatus = "ca"
+    end
+    
+    if horseStatus == "i" or horseStatus == "ca" then
         horse_idle:drawCentered(200,160)
+    end
+
+    if hunger == 16 then
+        horseStatus = "i"
     end
 end
 
