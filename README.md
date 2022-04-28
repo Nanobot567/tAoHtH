@@ -8,5 +8,4 @@ My main goal for this project is to make a game that is bad on purpose. Everythi
 
 ### todo
 - bgm
-- gameplay
-- add mic suppport to change horse generic sound effect
+- more settings/ ways to interact w/ horse

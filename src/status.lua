@@ -2,7 +2,7 @@ import "CoreLibs/graphics"
 import "horse"
 
 local gfx = playdate.graphics
-local statText = "your horse is fine."
+statText = "your horse is fine."
 
 gfx.setColor(gfx.kColorWhite)
 
@@ -13,6 +13,11 @@ h1 = gfx.image.new("img/hmeter/hmeter.1")
 h2 = gfx.image.new("img/hmeter/hmeter.2")
 hca = gfx.image.new("img/hmeter/hmeter.cannibalism")
 hcr = gfx.image.new("img/hmeter/hmeter.crazy")
+food = gfx.image.new("img/sustenance/burger")
+water = gfx.image.new("img/sustenance/water")
+
+food:draw(0,95)
+water:draw(0,150)
 
 function statusUpdate()
     hunger,anger,thirst,happiness,horseStatus = gimmeStats()
@@ -73,4 +78,17 @@ function statusUpdate()
     end
 
     gfx.drawText(statText,0,218)
+end
+
+function setStatusText(text)
+    statText = text
+    gfx.setColor(gfx.kColorWhite)
+    gfx.fillRect(0,218,400,22)
+    gfx.drawText(statText,0,218)
+end
+
+function refreshValues()
+    gfx.setColor(gfx.kColorWhite)
+    gfx.fillRect(0,110,160,20)
+    gfx.fillRect(0,130,150,20)
 end
