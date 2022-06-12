@@ -1,45 +1,45 @@
 import "horse"
 import "status"
+import "sounds"
 
 askingForConfirmation = false
 
-function save()
-    dataList = {"hunger";hunger,"anger";anger,"thirst";thirst,"happiness";happiness,"horseStatus";horseStatus}
+function save(manuallySaved)
+    dataList = {"hunger";hunger,"anger";anger,"thirst";thirst,"happiness";happiness,"horseStatus";horseStatus,"time";time,"isNight";isNight,"epileptic";epileptic,"name";horseName}
     playdate.datastore.write(dataList,"save")
+    
+    if manuallySaved == true then
+        setStatusText("saved game.")
+        playdate.wait(1000)
+    end
 end
 
-function load()
+function loadSave(manuallyLoaded)
     dataJson = playdate.datastore.read("save")
     if dataJson == nil then
-        print("no save found")
+        return false
     else
         hunger = dataJson[2]
         anger = dataJson[4]
         thirst = dataJson[6]
         happiness = dataJson[8]
         horseStatus = dataJson[10]
+        time = dataJson[12]
+        isNight = dataJson[14]
+        epileptic = dataJson[16]
+        horseName = dataJson[18]
+        return true
+    end
+
+    if manuallyLoaded == true then
+        setStatusText("loaded save.json.")
+        playdate.wait(1000)
     end
 end
 
 function deleteSave()
-    playdate.datastore.delete("save")
     setStatusText("are you sure? (a = yes, b = no)")
     askingForConfirmation = true
+    bgmaction("pause","main")
     playdate.stop()
-end
-
-function playdate.AButtonDown()
-    if askingForConfirmation then
-        playdate.start()
-        setStatusText("SAVE DELETED! please reopen tAoHtH.")
-        playdate.stop()
-        saveOnExit = false
-    end
-end
-
-function playdate.BButtonDown()
-    if askingForConfirmation then
-        playdate.start()
-        askingForConfirmation = false
-    end
 end

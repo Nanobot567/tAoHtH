@@ -6,30 +6,49 @@ local gfx = playdate.graphics
 mic = gfx.image.new("img/other/mic")
 
 buffer = playdate.sound.sample.new(3, playdate.sound.kFormat16bitMono)
-horseIdleSound = playdate.sound.sampleplayer.new(buffer)
+bgm = playdate.sound.fileplayer.new("mus/main")
+recBeep = playdate.sound.sample.new("mus/recBeep")
 
 function recSound(sound)
     mic:draw(360,200)
     -- if sound == "idle" then
-    playdate.wait(1000)
+    bgmaction("pause","main")
+    playdate.wait(500)
+    recBeep:play()
+    playdate.wait(1100)
+    gfx.drawText("REC",361,185)
 
     playdate.sound.micinput.recordToSample(buffer, doneRec)
     -- end
 end
 
 function doneRec(sound)
-    horseIdleSound = playdate.sound.sampleplayer.new(buffer)
-    gfx.fillRect(360,200,30,30)
+    sound:save("idle")
+    sound:save("idle.wav")
+    gfx.fillRect(360,180,30,50)
     playdate.stop()
     print("done")
-    horseIdleSound:play()
+    sound:play()
     setStatusText("playing new horseIdleSound...")
     playdate.wait(3000)
+    bgmaction("play","main")
     playdate.start()
 end
 
 function playSound(sound)
     if sound == "idle" then
-        horseIdleSound:play()
+        snd = playdate.sound.sample.new("idle")
+        snd:play()
+    end
+end
+
+function bgmaction(action, audioname)
+    bgm:load("mus/"..audioname)
+    if action == "play" then
+        bgm:play(100000000)
+    elseif action == "pause" then
+        bgm:pause()
+    elseif action == "stop" then
+        bgm:stop()
     end
 end
