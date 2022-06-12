@@ -5,7 +5,7 @@ The adventures of horse the horse, a game that's bad on purpose
 ![dumbtest](https://img.shields.io/badge/dumb_test-dumb_|_all_tests_failed-red)
 
 
-<div style="text-align: center;"><img src="readme-graphics/Playdate-badge-download.png"></img></div>
+<a href="https://github.com/nanobot567/tAoHtH/releases/latest"><div style="text-align: center;"><img src="readme-graphics/Playdate-badge-download.png"></img></div></a>
 
 
 ### What is this game?
