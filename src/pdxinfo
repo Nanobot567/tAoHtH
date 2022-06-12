@@ -1,7 +1,8 @@
-name=adventuresofhorsethehorse
-author=Nanobot567 & CE3
+name=The Adventures Of Horse
+author=Nanobot567 & Ce3
 description=a free to play animal care game!
 bundleID=com.nano.ce3.ahh
 version=1.0
-buildNumber=237
+buildNumber=602
 imagePath=SystemAssets
+contentWarning=Contains flashing images, and an unruly horse
