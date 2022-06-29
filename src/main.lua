@@ -7,9 +7,11 @@ import "saveload"
 import "epilepsy"
 import "buttons"
 import "tutor"
+import "saveedit"
 
 saveOnExit = true
 debug = false
+editingSV = false
 
 local gfx = playdate.graphics
 
@@ -28,48 +30,51 @@ end
 function playdate.update()
     playdate.timer.updateTimers()
 
-    if hasSave == false then
-        checkForEpilepsy()
-        snd = playdate.sound.sample.new(3, playdate.sound.kFormat16bitMono)
-        snd:save("idle")
-        snd:save("idle.wav")
-    elseif inTutorial == true then
-        tutorUpdate()
-    else
-        horseUpdate()
-        skyUpdate()
-        statusUpdate()
-        menuUpdate()
-    end
-
-    if horseStatus == "finalform" then
-        updateBattle()
-    end
-
-    if debug == true then
-        playdate.drawFPS(385,0)
-    end
-
-    if playdate.keyboard.isVisible() == false and kbOpen == true then
-        gfx.clear(gfx.kColorWhite)
-        redrawMenuIcons(inSettings)
-        drawStatusBarIcons()
-        kbOpen = false
-
-        if askingForTalkText == true and talkText ~= "" then
-            setStatusText("your horse is responding...")
-            playdate.wait(3000)
-            horseRespond()
-        end
-    elseif kbOpen == true then
-        if askingForTalkText == true then
-            setStatusText(playdate.keyboard.text)
-            talkText = playdate.keyboard.text
+    if editingSV == false then
+        if hasSave == false then
+            checkForEpilepsy()
+            snd = playdate.sound.sample.new(3, playdate.sound.kFormat16bitMono)
+            snd:save("idle")
+            snd:save("idle.wav")
+        elseif inTutorial == true then
+            tutorUpdate()
         else
-            horseName = playdate.keyboard.text
+            horseUpdate()
+            skyUpdate()
+            statusUpdate()
+            menuUpdate()
         end
-    end
 
+        if horseStatus == "finalform" then
+            updateBattle()
+        end
+
+        if debug == true then
+            playdate.drawFPS(385,0)
+        end
+
+        if playdate.keyboard.isVisible() == false and kbOpen == true then
+            gfx.clear(gfx.kColorWhite)
+            redrawMenuIcons(inSettings)
+            drawStatusBarIcons()
+            kbOpen = false
+
+            if askingForTalkText == true and talkText ~= "" then
+                setStatusText("your horse is responding...")
+                playdate.wait(3000)
+                horseRespond()
+            end
+        elseif kbOpen == true then
+            if askingForTalkText == true then
+                setStatusText(playdate.keyboard.text)
+                talkText = playdate.keyboard.text
+            else
+                horseName = playdate.keyboard.text
+            end
+        end
+    else
+        svTUpdate()
+    end
 end
 
 function playdate.gameWillTerminate()

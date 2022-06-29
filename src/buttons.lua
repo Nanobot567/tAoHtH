@@ -15,6 +15,10 @@ function playdate.AButtonDown()
         playdate.graphics.clear(playdate.graphics.kColorWhite)
         inTutorial = true
         save(false)
+    elseif waitingForOkInSVT then
+        if svtMode == 0 then
+            svtMode += 1
+        end
     end
 end
 
@@ -36,5 +40,7 @@ end
 function playdate.BButtonHeld()
     if playdate.buttonIsPressed("up") then
         debug = not debug
+    elseif playdate.buttonIsPressed("down") then
+        editingSV = true
     end
 end
