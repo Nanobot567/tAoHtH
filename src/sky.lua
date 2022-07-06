@@ -54,13 +54,13 @@ function skyUpdate()
     else
         if horseStatus ~= "finalform" then
             rot = playdate.getCrankPosition()
-            if playdate.getCrankTicks(90) == 1 then
-                cloudx += 1
+            if playdate.getCrankTicks(8) == 1 then
+                cloudx += 10
                 if cloudx >= 420 then
                     cloudx = -70
                 end
-            elseif playdate.getCrankTicks(90) == -1 then
-                cloudx -= 1
+            elseif playdate.getCrankTicks(8) == -1 then
+                cloudx -= 10
                 if cloudx >= 420 then
                     cloudx = -70
                 end
