@@ -1,11 +1,9 @@
 # tAoHtH
 The adventures of horse the horse, a game that's bad on purpose
 
-![lines](https://img.shields.io/tokei/lines/github/nanobot567/tAoHtH?color=default&label=lines%20of%20code)
 ![dumbtest](https://img.shields.io/badge/dumb_test-dumb_|_all_tests_failed-red)
 
-
-<a href="https://github.com/nanobot567/tAoHtH/releases/latest"><div style="text-align: center;"><img src="readme-graphics/Playdate-badge-download.png"></img></div></a>
+<a href="https://codeberg.org/nanobot567/tAoHtH/releases/latest"><div style="text-align: center;"><img src="readme-graphics/Playdate-badge-download.png"></img></div></a>
 
 
 ### What is this game?
